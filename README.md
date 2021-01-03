@@ -27,7 +27,15 @@ $ npm install
 ```
 $ yarn start:dev 
 or 
-$ npm start:dev
+$ npm run start:dev
+```
+### How to run Test Cases
+first create a seperate database for testing as we will be covering integration testing and we are not supposed to touch the development database.
+
+```
+$ yarn test
+or
+$ npm run test
 ```
 
 ### Author
