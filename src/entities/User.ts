@@ -24,4 +24,7 @@ export class User extends BaseEntity{
     @Column("varchar",{name:"password"})
     password: string
 
+    @Field()
+    name: string;
+
 }
