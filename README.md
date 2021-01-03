@@ -17,6 +17,18 @@ seed [graphql-ts-server-seed](https://github.com/pavanjava/graphql-ts-server-see
 * Logout 
 
 ### How to Run
+#### installing required packages
+```
+$ yarn install 
+or 
+$ npm install
+```
+#### run the project
+```
+$ yarn start:dev 
+or 
+$ npm start:dev
+```
 
 ### Author
 * Pavan Mantha
