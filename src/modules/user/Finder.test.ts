@@ -23,10 +23,28 @@ const findAllQuery = `query FindAll {
     }
 }`;
 
+const findByIdQuery = `{
+    findById(id:"1") {
+        id
+        firstName
+        lastName
+        email
+        name
+    }
+}`;
+
 describe("All Finder Queries", () => {
     it("should get all users", async (done) => {
         const response = await graphqlUtil({
             source: findAllQuery, variableValues: {}
+        });
+        console.log(response);
+        done();
+    });
+
+    it("should get users by id", async (done) => {
+        const response = await graphqlUtil({
+            source: findByIdQuery, variableValues: {}
         });
         console.log(response);
         done();

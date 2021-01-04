@@ -5,6 +5,7 @@ import {buildSchema} from "type-graphql";
 import {createConnection} from "typeorm";
 import {RegisterResolver} from "./modules/user/Resgister";
 import {FinderResolver} from "./modules/user/Finder";
+import {LoginResolver} from "./modules/user/Login";
 
 const SERVER_PORT: number = 3000;
 
@@ -13,7 +14,7 @@ const server = async () => {
     await createConnection();
 
     const schema = await buildSchema({
-        resolvers:[RegisterResolver, FinderResolver]
+        resolvers:[RegisterResolver, FinderResolver, LoginResolver]
     })
     const apolloServer = new ApolloServer({schema})
     const app = Express();

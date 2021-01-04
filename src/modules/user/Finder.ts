@@ -10,7 +10,6 @@ export class FinderResolver {
 
     @Query(() => [User], {nullable: true})
     async findAll(): Promise<User[]> {
-        const users = await User.find();
-        return users;
+        return await User.find();
     }
 }
