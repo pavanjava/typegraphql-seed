@@ -13,28 +13,8 @@ afterAll(async () => {
     }
 });
 
-const loginQuerySuccess = `{
-    login(email:"test@test.com",password:"test1") {
-        id
-        firstName
-        lastName
-        email
-        name
-    }
-}`;
-
-const loginQueryFail = `{
-    login(email:"test@test.com",password:"test") {
-        id
-        firstName
-        lastName
-        email
-        name
-    }
-}`;
-
-const userDoesnotExist = `{
-    login(email:"test@test1.com",password:"test") {
+const loginQuery = `query($email: String!, $password: String!){
+    login(email:$email,password:$password) {
         id
         firstName
         lastName
@@ -46,7 +26,7 @@ const userDoesnotExist = `{
 describe("Login Queries", () => {
     it("should login user", async (done) => {
         const response = await graphqlUtil({
-            source: loginQuerySuccess, variableValues: {}
+            source: loginQuery, variableValues: {email:"test@test.com", password: "test1"}
         });
         console.log(response);
         done();
@@ -54,7 +34,7 @@ describe("Login Queries", () => {
 
     it("should fail login: user pwd doesn't match", async (done) => {
         const response = await graphqlUtil({
-            source: loginQueryFail, variableValues: {}
+            source: loginQuery, variableValues: {email:"test@test.com", password: "test"}
         });
         console.log(response);
         done();
@@ -62,7 +42,7 @@ describe("Login Queries", () => {
 
     it("should fail login: user doesnt exist", async (done) => {
         const response = await graphqlUtil({
-            source: userDoesnotExist, variableValues: {}
+            source: loginQuery, variableValues: {email:"test@test1.com", password: "test1"}
         });
         console.log(response);
         done();

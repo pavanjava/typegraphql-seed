@@ -23,8 +23,8 @@ const findAllQuery = `query FindAll {
     }
 }`;
 
-const findByIdQuery = `{
-    findById(id:"1") {
+const findByIdQuery = `query($userId: String!){
+    findById(id:$userId) {
         id
         firstName
         lastName
@@ -44,7 +44,7 @@ describe("All Finder Queries", () => {
 
     it("should get users by id", async (done) => {
         const response = await graphqlUtil({
-            source: findByIdQuery, variableValues: {}
+            source: findByIdQuery, variableValues: {"userId":"1"}
         });
         console.log(response);
         done();
