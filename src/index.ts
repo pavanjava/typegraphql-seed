@@ -6,6 +6,7 @@ import {createConnection} from "typeorm";
 import {RegisterResolver} from "./modules/user/Resgister";
 import {FinderResolver} from "./modules/user/Finder";
 import {LoginResolver} from "./modules/user/Login";
+import {APIAuthChecker} from "./modules/auth/APIAuthChecker";
 
 const SERVER_PORT: number = 3000;
 
@@ -14,7 +15,8 @@ const server = async () => {
     await createConnection();
 
     const schema = await buildSchema({
-        resolvers:[RegisterResolver, FinderResolver, LoginResolver]
+        resolvers:[RegisterResolver, FinderResolver, LoginResolver],
+        authChecker: APIAuthChecker
     })
     const apolloServer = new ApolloServer({schema})
     const app = Express();
